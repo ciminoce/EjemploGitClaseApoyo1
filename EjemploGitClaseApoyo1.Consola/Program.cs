@@ -6,6 +6,8 @@ namespace EjemploGitClaseApoyo1.Consola
     {
         static void Main(string[] args)
         {
+            double temperaturaMax = double.MinValue;
+            double temperaturaMin = double.MaxValue;
             for (int contadorTemperaturas = 1; contadorTemperaturas <= 5; contadorTemperaturas++)
             {
                 Console.WriteLine($"Nro. Temperatura:{contadorTemperaturas}");
@@ -14,7 +16,26 @@ namespace EjemploGitClaseApoyo1.Consola
                 var temperaturaCelsius = ObtenerValorDouble("Ingrese la temperatura entre -10 y 30 grados celsius:",-10,30);
                 var temperaturaFah=ConvertirCelsiusFah(temperaturaCelsius);
                 Console.WriteLine($"{temperaturaCelsius} equivalen a {temperaturaFah:N2}ºF");
+                //ObtenerMayorTemperatura(ref temperaturaMax, temperaturaCelsius);
+                if (temperaturaCelsius > temperaturaMax)
+                {
+                    temperaturaMax=temperaturaCelsius;
+                }
+                ObtenerMenorTemperatura(ref temperaturaMin, temperaturaCelsius);
             }
+            Console.WriteLine($"La mayor temperatura es :{temperaturaMax}");
+            Console.WriteLine($"La menor temperatura es :{temperaturaMin}");
+
+        }
+
+        private static void ObtenerMenorTemperatura(ref double temperaturaMin, double temperatura)
+        {
+            temperaturaMin = double.Min(temperaturaMin, temperatura);
+        }
+
+        private static void ObtenerMayorTemperatura(ref double temperaturaMax, double temperatura)
+        {
+            temperaturaMax = double.Max(temperaturaMax, temperatura);
         }
 
         private static double ConvertirCelsiusFah(double temperatura)
