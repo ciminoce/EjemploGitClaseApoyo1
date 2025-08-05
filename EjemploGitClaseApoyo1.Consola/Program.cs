@@ -12,9 +12,16 @@ namespace EjemploGitClaseApoyo1.Consola
                 Console.WriteLine($"Nombre del dia: {InformarDiaSemana(contadorTemperaturas)}");
 
                 var temperaturaCelsius = ObtenerValorDouble("Ingrese la temperatura entre -10 y 30 grados celsius:",-10,30);
-
+                var temperaturaFah=ConvertirCelsiusFah(temperaturaCelsius);
+                Console.WriteLine($"{temperaturaCelsius} equivalen a {temperaturaFah:N2}ºF");
             }
         }
+
+        private static double ConvertirCelsiusFah(double temperatura)
+        {
+            return 1.8 * temperatura + 32;
+        }
+
         private static string InformarDiaSemana(int nroDia)
         {
             switch (nroDia)
