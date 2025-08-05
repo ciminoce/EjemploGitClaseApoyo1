@@ -1,4 +1,6 @@
-﻿namespace EjemploGitClaseApoyo1.Consola
+﻿using System.Runtime.CompilerServices;
+
+namespace EjemploGitClaseApoyo1.Consola
 {
     internal class Program
     {
@@ -8,8 +10,8 @@
             {
                 Console.WriteLine($"Nro. Temperatura:{contadorTemperaturas}");
                 Console.WriteLine($"Nombre del dia: {InformarDiaSemana(contadorTemperaturas)}");
-                Console.Write("Ingrese una temperatura entre -10 y 30:");
-                var temperaturaCelsius = double.Parse(Console.ReadLine()!);
+
+                var temperaturaCelsius = ObtenerValorDouble("Ingrese la temperatura entre -10 y 30 grados celsius:",-10,30);
 
             }
         }
@@ -31,6 +33,25 @@
 
                     return "Día no válido";
             }
+            
+        }
+        private static double ObtenerValorDouble(string mensaje, double valorMin, double valorMax)
+        {
+            double valor = 0.0;
+            do
+            {
+                Console.Write(mensaje);
+                if(!double.TryParse(Console.ReadLine(), out valor) || valor<valorMin || valor>valorMax)
+                {
+                    Console.WriteLine("Temperatura mal ingresada o fuera del rango");
+                }
+                else
+                {
+                    break;
+                }
+
+            } while (true);
+            return valor;
         }
     }
 }
